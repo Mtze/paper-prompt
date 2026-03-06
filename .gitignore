@@ -1,0 +1,95 @@
+paper.pdf
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.cb
+*.cb2
+*.fdb_latexmk
+*.fls
+*.fmt
+*.fot
+*.loa
+*.lof
+*.log
+*.lot
+*.lol
+*.out
+*.toc
+*.synctex.gz
+*.synctex(busy)
+*.pdfsync
+*.tdo
+*.tps
+*.wsh
+
+# Glossaries / Acronyms
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.ist
+*.xdy
+
+# Nomenclature
+*.nlo
+*.nls
+*.nlg
+
+# Index
+*.idx
+*.ilg
+*.ind
+
+# Beamer
+*.nav
+*.snm
+*.vrb
+
+# Knitr
+*-concordance.tex
+
+# Bibliography tools
+*.bak
+*.sav
+
+# OS generated
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*~
+*.tmp
+*.temp
+*.swp
+*.swo
+*#
+.#*
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Output PDFs (uncomment if you don't want to track the compiled PDF)
+# *.pdf
+
+# Python / R (if used for data analysis)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Rhistory
+.RData
+.Rproj.user

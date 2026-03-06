@@ -1,0 +1,407 @@
+\documentclass[sigconf,review]{acmart}
+%\documentclass[sigconf,anonymous,review]{acmart}
+%\documentclass[sigconf,screen,authorversion]{acmart}
+%\documentclass[sigconf,screen]{acmart}
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom packages
+\usepackage{amsmath,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\setlength{\marginparwidth}{2cm}
+\usepackage[
+%disable
+]{todonotes}
+\usepackage{subcaption}
+\usepackage[acronym,nogroupskip,nopostdot]{glossaries}
+\usepackage[capitalize, noabbrev]{cleveref}
+\usepackage{orcidlink}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{mdframed}
+\usepackage{framed}
+
+% Additional packages for formatting
+\usepackage{listings}
+\usepackage{listingsutf8}
+
+% Check marks and cross marks
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\textcolor{green!60!black}{\ding{51}}~}%
+\newcommand{\xmark}{\textcolor{red!60!black}{\ding{55}}~}%
+
+% Table formatting commands
+\newcommand{\strong}{\textcolor{green!70!black}{\textbf{Strong}}}%
+\newcommand{\moderate}{\textcolor{orange!80!black}{\textbf{Moderate}}}%
+\newcommand{\weak}{\textcolor{red!70!black}{\textbf{Weak}}}%
+\newcommand{\limited}{\textcolor{gray!70!black}{\textbf{Limited}}}%
+\newcommand{\nosupport}{\textcolor{red!90!black}{\textbf{No Support}}}%
+
+% START Finding & Recommendation Boxes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tcolorbox}
+\definecolor{darkgrey}{RGB}{66,66,66}
+\definecolor{main}{HTML}{2E7D32}    % setting main color to be used (green)
+\definecolor{sub}{HTML}{E8F5E8}     % light green background
+\definecolor{recommendation}{HTML}{1976D2}  % blue for recommendations
+\definecolor{recommendationbg}{HTML}{E3F2FD}  % light blue background
+
+% Create counters for findings and recommendations
+\newcounter{findingcounter}
+\setcounter{findingcounter}{0}
+
+\newcounter{recommendationcounter}
+\setcounter{recommendationcounter}{0}
+
+\newcounter{fulfillmentcounter}
+\setcounter{fulfillmentcounter}{0}
+
+\tcbset{
+    sharp corners,
+    colback = white,
+    before skip = 0.1cm,   % reduced extra space before the box
+    after skip = 0.1cm     % reduced extra space after the box
+}
+
+% Create a basic fancyBox for general use
+\newtcolorbox{fancyBox}{
+    colback = sub,
+    colframe = main,
+    boxrule = 0pt,
+    leftrule = 4pt, % left rule weight
+    top = 1pt,      % reduced top padding
+    bottom = 1pt,   % reduced bottom padding
+    left = 4pt,     % reduced left padding
+    right = 4pt,    % reduced right padding
+}
+
+% Finding boxes (observations)
+\newenvironment{findingBox}{
+    \begin{fancyBox}
+        \refstepcounter{findingcounter}\textbf{Finding \thefindingcounter:}
+    }
+    {
+    \end{fancyBox}
+    }
+
+% Alternative finding environment
+\newenvironment{finding}{
+    \begin{fancyBox}
+        \refstepcounter{findingcounter}\textbf{Finding \thefindingcounter:}
+    }
+    {
+    \end{fancyBox}
+    }
+
+% Recommendation boxes
+\newtcolorbox{recommendationFancyBox}{
+    colback = recommendationbg,
+    colframe = recommendation,
+    boxrule = 0pt,
+    leftrule = 4pt, % left rule weight
+    top = 1pt,      % reduced top padding
+    bottom = 1pt,   % reduced bottom padding
+    left = 4pt,     % reduced left padding
+    right = 4pt,    % reduced right padding
+}
+
+\newenvironment{recommendationBox}{
+    \begin{recommendationFancyBox}
+        \refstepcounter{recommendationcounter}\textbf{Recommendation \therecommendationcounter:}
+    }
+    {
+    \end{recommendationFancyBox}
+    }
+
+% Fulfillment Boxes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{fulfillment}{HTML}{2E7D32}      % Dark green for fulfillment boxes
+\definecolor{fulfillmentbg}{HTML}{E8F5E8}    % Light green background
+
+\newtcolorbox{fulfillmentBox}{
+    colback = fulfillmentbg,
+    colframe = fulfillment,
+    boxrule = 0pt,
+    leftrule = 4pt, % left rule weight
+    top = 1pt,      % reduced top padding
+    bottom = 1pt,   % reduced bottom padding
+    left = 4pt,     % reduced left padding
+    right = 4pt     % reduced right padding
+}
+
+\newenvironment{fulfillment}{
+    \begin{fulfillmentBox}
+        \refstepcounter{fulfillmentcounter}\textbf{Requirement Fulfillment \thefulfillmentcounter:}
+    }
+    {
+    \end{fulfillmentBox}
+    }
+
+% END Finding & Recommendation Boxes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Hypothesis environment
+\newmdenv [%
+  	linecolor = darkgrey,
+ 	linewidth = 2pt,
+%
+ 	leftmargin = 0,
+ 	rightmargin = 0,
+ 	skipabove = 1pt,
+ 	skipbelow = 1pt,
+%
+ 	innerleftmargin = 0,
+ 	innerrightmargin = 0,
+ 	innertopmargin = 0,
+ 	innerbottommargin = 0,
+%
+ 	topline=false,
+ 	bottomline=false,
+ 	leftline=true,
+ 	rightline=false,
+]{hypothesis}
+
+% Prevent orphans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+% Code listing configuration
+\lstdefinelanguage{docker}{
+  keywords={FROM, RUN, COPY, ADD, ENTRYPOINT, CMD, ENV, ARG, WORKDIR, EXPOSE, LABEL, USER, VOLUME, STOPSIGNAL, ONBUILD, MAINTAINER, HEALTHCHECK, as},
+  keywordstyle=\color{blue},
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{\#},
+  commentstyle=\color{purple},
+  stringstyle=\color{red},
+  basicstyle=\fontsize{6}{8}\ttfamily
+}
+
+\lstdefinelanguage{json}{
+    basicstyle=\fontsize{7}{8}\ttfamily
+    commentstyle=\color{purple},
+    stepnumber=1,
+    showstringspaces=false,
+    breaklines=true,
+    literate=
+     *{:}{{{\color{blue}:}}}{1}
+      {,}{{{\color{blue},}}}{1}
+      {"}{{{\color{red}"}}}{1}
+      {true}{{{\color{teal}true}}}{4}
+      {false}{{{\color{teal}false}}}{5}
+      {null}{{{\color{teal}null}}}{4}
+}
+
+% Global listing configuration
+\lstset{belowskip=0\baselineskip}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Custom Commands for Writing and Review
+\newcommand{\feedback}[1]{\todo[inline,color=green,caption={}]{\textbf{Feedback required}: #1}}
+\newcommand{\missing}[1]{\todo[inline,color=yellow,caption={}]{\textbf{Missing}: #1}}
+\newcommand{\authorassignment}[1]{\todo[inline,color=cyan,caption={}]{\textbf{Responsible}: #1}}
+\newcommand{\chapterfocus}[1]{\todo[inline,color=lightgray,caption={}]{\textbf{Focus}: #1}}
+
+% Anonymity placeholders (uncomment for anonymous submission)
+% TODO: Customize these placeholders for your specific paper
+\newcommand{\universityname}{[UNIVERSITY]}
+\newcommand{\cityname}{[CITY]}
+\newcommand{\groupname}{[RESEARCH GROUP]}
+
+
+% GitHub repository placeholders for anonymous submission
+\newcommand{\githubRepo}{Will be available upon publication. Contained in the supplementary material for reviewers.}
+\newcommand{\supplementaryMaterial}{Removed for blind review - Contained in the replication package for reviewers}
+
+% URL footnote command
+\newcommand{\urlfootnote}[2]{\footnote{\tiny\url{#1}}}
+
+% TODO marker for author coordination
+\newcommand{\TODO}{\textcolor{red}{TODO}}
+
+% Autoref configuration
+\def\chapterautorefname{Chapter}%
+\def\sectionautorefname{Section}%
+\def\subsectionautorefname{Subsection}%
+\def\subsubsectionautorefname{Subsubsection}%
+\def\paragraphautorefname{Paragraph}%
+\def\tableautorefname{Table}%
+\def\equationautorefname{Equation}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Rights management information
+%% TODO: Update these when you receive rights information
+% \setcopyright{acmlicensed}
+% \copyrightyear{2024}
+% \acmYear{2024}
+% \acmDOI{XXXXXXX.XXXXXXX}
+% \acmConference[Conference acronym 'XX]{Conference Title}{Date}{Location}
+
+%% Submission ID (if required)
+%%\acmSubmissionID{123-A56-BU3}
+
+%% Citation style (uncomment for author-year citations)
+%%\citestyle{acmauthoryear}
+
+%%
+%% end of the preamble, start of the body of the document source.
+\begin{document}
+
+% Acronym definitions - TODO: Add your specific acronyms
+\newacronym{ide}{IDE}{Integrated Development Environment}
+\newacronym{api}{API}{Application Programming Interface}
+% Add more acronyms as needed
+
+%%
+%% The "title" command has an optional parameter for short title in headers
+\title{Paper Title: TODO - Replace with Your Title}
+
+%%
+%% Author definitions - TODO: Replace with your author information
+
+\author[Matthias Linhuber]{Matthias Linhuber \orcidlink{0000-0003-3640-5424}}
+\email{matthias.linhuber@tum.de}
+\orcid{0000-0003-3640-5424}
+\affiliation{%
+  \institution{Technical University of Munich}
+  \city{Munich}
+  \country{Germany}
+}
+
+\author[Second Author]{Second Author \orcidlink{0000-0000-0000-0000}}
+\email{second.author@university.edu}
+\orcid{0000-0000-0000-0000}
+\affiliation{%
+  \institution{Your University}
+  \city{Your City}
+  \country{Your Country}
+}
+
+\author[Stephan Krusche]{Stephan Krusche \orcidlink{0000-0002-4552-644X}}
+\email{krusche@tum.de}
+\orcid{0000-0002-4552-644X}
+\affiliation{%
+  \institution{Technical University of Munich}
+  \city{Munich}
+  \country{Germany}
+}
+
+% TODO: Add more authors as needed
+
+%%
+%% Short author list for headers (if needed)
+%\renewcommand{\shortauthors}{Author et al.}
+
+%%
+%% Abstract
+\begin{abstract}
+    % Component 1: Importance/Problem Statement - Establish context and the specific problem
+    \missing{Start with 1-2 sentences establishing why this research area matters. Then state the specific problem or challenge that motivates this work. Example: "X is critical for Y, but Z remains a significant challenge..."}
+    %
+    % Component 2: Research Gap - Articulate what is missing in current approaches
+    \missing{Identify the gap in existing solutions or knowledge in 1 sentence. Example: "Existing approaches fail to address X because they do not account for Y..."}
+    %
+    % Component 3: Objective - State precisely what this research aims to achieve
+    \missing{State the specific objective or research goal in 1 sentence. Example: "This paper presents X, a novel approach that Y to achieve Z..." or "This study examines X to determine Y..."}
+    %
+    % Component 4: Methodology - Describe the approach concisely
+    \missing{Briefly describe the methodology, techniques, or approach used in 1-2 sentences. Example: "The approach combines X with Y to enable Z..." or "The study employs X method with N participants..."}
+    %
+    % Component 5: Key Findings - Present the most significant results
+    \missing{Summarize the key results or contributions in 1-2 sentences. Be specific with quantitative results where possible. Example: "Evaluation demonstrates X achieves Y, improving Z by N\% compared to baseline..." or "Analysis reveals three key factors: X, Y, and Z..."}
+    %
+    % Component 6: Implications - Explain broader impact or significance
+    \missing{Conclude with 1 sentence on the broader significance, implications, or impact. Example: "These findings enable X and suggest Y for future Z..." or "The results provide X with implications for Y..."}
+    %
+    % IMPORTANT: Target 150-200 words total (ACM allows up to 250, but concise is better)
+    % Remember: No use of "our", minimal use of "we", prefer active voice
+\end{abstract}
+
+%%
+%% CCS Concepts - TODO: Update with relevant concepts from http://dl.acm.org/ccs.cfm
+\begin{CCSXML}
+<ccs2012>
+   <concept>
+       <concept_id>10011007.10011074.10011075</concept_id>
+       <concept_desc>Software and its engineering~Designing software</concept_desc>
+       <concept_significance>500</concept_significance>
+   </concept>
+   <concept>
+       <concept_id>10010405.10010489.10010491</concept_id>
+       <concept_desc>Applied computing~Interactive learning environments</concept_desc>
+       <concept_significance>500</concept_significance>
+   </concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Software and its engineering~Designing software}
+\ccsdesc[500]{Applied computing~Interactive learning environments}
+
+%%
+%% Keywords - TODO: Update with your paper's keywords
+\keywords{keyword1, keyword2, keyword3, keyword4, keyword5}
+
+%%
+%% Received date (optional)
+% \received{DD Month YYYY}
+
+%%
+%% Build the title and author information
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Main Content
+
+\section{Introduction}
+\input{chapters/01-introduction}
+
+\section{Related Work}
+\input{chapters/02-related-work}
+
+\section{Methodology}
+\input{chapters/03-methodology}
+
+\section{Results}
+\input{chapters/04-results}
+
+\section{Discussion}
+\input{chapters/05-discussion}
+
+\section{Conclusion}
+\input{chapters/06-conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Data Availability
+%% Required by many ACM/IEEE venues. Describe where the replication package is hosted.
+%% See .claude/concept.md section 11 for replication package planning.
+\section*{Data Availability}
+% TODO: Replace with the actual replication package URL or Zenodo DOI after upload.
+% Choose one of the templates below and remove the others.
+
+% Option A: Openly available
+% The replication package supporting this paper, including raw data, analysis scripts,
+% and supplementary material, is publicly available at \url{\githubRepo}.
+
+% Option B: Available to reviewers only (blind review)
+% \supplementaryMaterial
+
+% Option C: Not yet available
+% \missing{Describe data availability — what is shared, where, and under what license}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Acknowledgments
+\section*{Acknowledgments}
+% TODO: Add acknowledgments here
+% Template: We would like to thank [people/organizations] for their contributions to this work.
+
+
+In accordance with ACM/IEEE guidelines, the authors disclose that GitHub Copilot, Claude, and ChatGPT were used to assist with grammar enhancements, reformulations, and general text editing throughout this paper.
+The content has been carefully reviewed to ensure it meets the standards of academic integrity.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Bibliography
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\end{document}
