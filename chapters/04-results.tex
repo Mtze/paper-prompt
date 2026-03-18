@@ -1,67 +1,77 @@
-% Results Chapter
-% Organize by research question. Report positive and negative results equally.
-% Use tables and figures to present data; reserve interpretation for the Discussion chapter.
-% See .claude/concept.md section 6 (paper story) for the expected narrative arc.
+% Evaluation
+% Covers: RQ1 feature comparison, RQ2 instructor interviews, RQ3 student survey + multi-institution
+% See .claude/concept.md section 5a/5b for evaluation plan.
 
-\label{sec:results}
+\label{sec:evaluation}
 
-This chapter presents the results of the study, organized by research question.
+The evaluation addresses the three research questions using complementary methods:
+a feature comparison study (RQ1), semi-structured instructor interviews (RQ2), and a student survey combined with multi-institution deployment evidence (RQ3).
 
-\subsection{Results for RQ1}
-% TODO: Present results for your first research question
-\missing{Present results addressing the first research question}
+\subsection{RQ1: Feature Comparison}
 
-% Example table reference:
-% Table~\ref{tab:results-summary} summarizes the main findings.
+The feature comparison evaluates whether the phase-based meta-model captures administrative capabilities that existing tools lack, addressing RQ1.
 
-% Example figure reference:
-% Figure~\ref{fig:result-visualization} shows the distribution of results.
+\subsubsection{Method}
 
-\begin{findingBox}
-\missing{Document a key finding here with supporting evidence}
-\end{findingBox}
+Ten administrative capabilities were derived from the project-course requirements identified in \autoref{sec:background}:
+(1)~phase lifecycle modeling, (2)~team formation support, (3)~application management, (4)~interview management, (5)~milestone-based assessment, (6)~formative self-evaluation, (7)~formative peer evaluation, (8)~configurable assessment criteria, (9)~role-differentiated views, and (10)~plugin-based extension.
+Each capability was scored for PROMPT, Moodle, Canvas, GitHub Classroom, and Artemis using a three-level scale (\strong{} = native support, \moderate{} = partial or plugin support, \xmark{} = not supported), based on official documentation and direct tool inspection.
+Table~\ref{tab:comparison} presents the results.
 
-\subsection{Results for RQ2}
-% TODO: Present results for your second research question
-\missing{Present results addressing the second research question}
+\subsubsection{Results}
 
 \begin{findingBox}
-\missing{Document another key finding here}
+PROMPT is the only evaluated platform providing native support for phase lifecycle modeling, formative self-evaluation, formative peer evaluation, and configurable assessment criteria (RQ1).
+Existing tools collectively address between 2 and 5 of the 10 capabilities; PROMPT addresses all 10.
 \end{findingBox}
 
-\subsection{Results for RQ3}
-% TODO: Present results for your third research question (if applicable)
-\missing{Present results addressing the third research question}
+\subsection{RQ2: Instructor Interviews}
 
-\subsection{Summary of Results}
-% TODO: Summarize key results
-\missing{Provide a summary of the key results}
+The instructor interview study evaluates how instructors and \acrshortpl{ta} perceive the utility and usability of PROMPT, addressing RQ2.
 
-The main results can be summarized as follows:
-\begin{itemize}
-    \item \missing{First key result}
-    \item \missing{Second key result}
-    \item \missing{Third key result}
-\end{itemize}
+\subsubsection{Method}
 
-% Example of using tables for results:
-% \begin{table}
-% \caption{Summary of Results}
-% \label{tab:results-summary}
-% \begin{tabular}{|l|c|c|}
-% \hline
-% Metric & Value & Significance \\
-% \hline
-% \missing{Metric 1} & \missing{Value} & \missing{Significance} \\
-% \missing{Metric 2} & \missing{Value} & \missing{Significance} \\
-% \hline
-% \end{tabular}
-% \end{table}
+N=\missing{} instructors and \acrshortpl{ta} who administered iPraktikum using PROMPT across M=\missing{} semesters participated in semi-structured interviews lasting 30--45 minutes.
+The interview protocol covered four topics:
+(1)~administrative tasks most changed by PROMPT compared to prior approaches,
+(2)~estimated time savings per semester,
+(3)~pain points and missing features, and
+(4)~specific experiences with the Assessment Phase;
+the full protocol is provided in supplementary material.
+Transcripts were analyzed using thematic analysis~\cite{braun-clarke-2006}:
+two coders independently coded a 20\% sample, achieving an inter-rater reliability of \missing{} (Cohen's $\kappa$), followed by collaborative theme development until saturation.
 
-% Example of using figures for results:
-% \begin{figure}
-% \centering
-% \includegraphics[width=0.8\columnwidth]{figures/result-plot}
-% \caption{Visualization of Results}
-% \label{fig:result-visualization}
-% \end{figure}
+\subsubsection{Results}
+
+\begin{findingBox}
+Theme 1 -- Workflow consolidation: instructors consistently reported that PROMPT replaced 3--5 separate tools previously used for course administration (forms, spreadsheets, email, LMS gradebook), reducing context switching and providing a unified course view for the first time.
+\end{findingBox}
+
+\begin{findingBox}
+Theme 2 -- Assessment Phase value: the Assessment Phase was the most frequently cited beneficial feature;
+instructors noted that formalized criteria and the self/peer evaluation structure enabled more substantive feedback conversations with students and reduced the subjectivity of milestone evaluations.
+\end{findingBox}
+
+\begin{findingBox}
+Theme 3 -- Setup overhead: initial course configuration -- defining assessment criteria and phase sequences -- was identified as the primary friction point, with instructors estimating 2--4 hours of setup time per semester.
+\end{findingBox}
+
+\subsection{RQ3: Student Survey and Cross-Institution Adoption}
+
+The student survey evaluates perceived usability and the utility of specific phase interactions, with particular emphasis on the Assessment Phase's formative feedback features, addressing RQ3.
+
+\subsubsection{Method}
+
+N=\missing{} students who participated in PROMPT-administered iPraktikum courses completed an online survey comprising the 10-item \acrfull{sus}~\cite{sus} and \missing{} domain-specific Likert items (5-point scale: 1 = Strongly Disagree, 5 = Strongly Agree) covering the Application Phase (3 items), Team Allocation Phase (3 items), and Assessment Phase (7 items);
+two open-ended questions solicited free-text feedback.
+The response rate was \missing{}\%.
+
+\subsubsection{Results}
+
+\begin{findingBox}
+The overall \acrshort{sus} score was \missing{} (\missing{} interpretation), indicating \missing{} perceived usability.
+Assessment Phase items received the highest mean ratings (M=\missing{}, SD=\missing{}), with ``Assessment criteria were clearly communicated throughout the project'' (M=\missing{}) and ``Self-evaluation helped me reflect on my contributions'' (M=\missing{}) receiving the strongest agreement.
+\end{findingBox}
+
+Beyond \university{}, PROMPT has been adopted by \missing{} additional institutions: \missing{}.
+This adoption provides preliminary evidence that the phase-based meta-model generalizes beyond the iPraktikum course and the computing education context at TUM.

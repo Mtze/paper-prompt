@@ -1,21 +1,15 @@
 # Paper Conceptualization
 
-Complete this document before writing.
-Work through each section in order — later sections build on earlier ones.
-Claude will use this file as context throughout the writing process.
-
 ---
 
 ## 0. Paper Type
 
-Select all that apply:
-
-- [ ] Empirical study (qualitative or quantitative investigation)
-- [ ] Tool paper (a system, tool, or infrastructure artifact)
-- [ ] Replication study (reproducing or extending prior work)
-- [ ] Literature review / mapping study
-- [ ] Design science (framework, model, method)
-- [ ] Experience report / case study
+- [ ] Empirical study
+- [x] Tool paper (a system, tool, or infrastructure artifact)
+- [ ] Replication study
+- [ ] Literature review
+- [x] Design science (the phase-based meta-model is a conceptual contribution)
+- [ ] Experience report
 
 **If this is a tool paper, complete Section 5b in addition to Section 5a.**
 
@@ -23,281 +17,352 @@ Select all that apply:
 
 ## 1. The Problem
 
-> Define the problem precisely. A vague problem leads to a vague paper.
+- [x] **Core problem**: Project-based courses require a multi-phase administrative lifecycle
+  (application, team formation, iterative project work, formative assessment) that generic LMS
+  and exercise platforms cannot model, forcing instructors to rely on fragile ad-hoc combinations
+  of spreadsheets, email, and plugins that must be reconstructed every semester.
 
-- [ ] **Core problem**: _What specific problem does this paper address?_
+- [x] **Who is affected**: Instructors and TAs managing large project-based courses across
+  disciplines (computing, engineering, design, business); particularly acute for courses with
+  >30 students, multiple project teams, external clients, and milestone-based assessment.
 
-- [ ] **Who is affected**: _Who faces this problem, in what context, and how often?_
+- [x] **Current pain**: No unified view of the course lifecycle; recurring manual effort per
+  semester; lack of process consistency across iterations; poor transparency for students;
+  assessment criteria communicated informally rather than formalized through tooling.
 
-- [ ] **Current pain**: _What goes wrong or is impossible without solving this problem?_
-
-- [ ] **Timeliness**: _Why is now the right time to address this? What has changed?_
+- [x] **Timeliness**: Project-based learning is expanding across universities and disciplines;
+  no open-source platform has addressed the course administration gap despite growing demand
+  and widespread adoption of PBL pedagogies.
 
 ---
 
 ## 2. The Gap
 
-> Distinguish between "related work exists" and "the specific gap your work fills".
+- [x] **Existing approaches**: Moodle, Canvas (LMS); Artemis, GitHub Classroom (exercise
+  platforms); ad-hoc combinations of Google Forms, spreadsheets, Jira.
 
-- [ ] **Existing approaches**: _What solutions or studies already address this problem area?_
+- [x] **Their shortcomings**: LMS model courses as flat content hierarchies -- no phase
+  lifecycle, no team structures, no pass/fail decisions per phase, no formative feedback
+  infrastructure. Exercise platforms optimize for individual submission grading. Ad-hoc tools
+  lack consistency and require per-semester manual re-setup.
 
-- [ ] **Their shortcomings**: _Where do they fall short — in scope, correctness, scale, context, or method?_
-
-- [ ] **The precise gap**: _In one sentence: what is missing from the current body of knowledge or tooling?_
+- [x] **The precise gap**: No existing open-source platform provides a composable, phase-based
+  course meta-model that enables instructors to model the administrative lifecycle of any
+  project-based course as an ordered sequence of independently operable phase modules.
 
 ---
 
 ## 3. Core Contribution
 
-> If you can only say one thing about this paper, what is it?
+- [x] **One-sentence contribution**: "This paper contributes PROMPT, a phase-based course
+  meta-model and its open-source implementation, which enables instructors to administer
+  project-based courses as composable sequences of independently operable phase modules,
+  applicable across disciplines."
 
-- [ ] **One-sentence contribution**: _Complete this: "This paper contributes X, which enables/shows/demonstrates Y."_
+- [x] **Contribution type**:
+  - [x] New tool or infrastructure
+  - [x] New framework, model, or taxonomy (the phase-based meta-model)
 
-- [ ] **Contribution type** (tick one):
-  - [ ] New empirical evidence
-  - [ ] New technique or algorithm
-  - [ ] New tool or infrastructure
-  - [ ] New framework, model, or taxonomy
-  - [ ] Replication or negative result
-  - [ ] Other: ___
+- [x] **Novelty argument**: Existing tools either model courses as flat content repositories
+  (LMS) or optimize for individual assessment workflows (exercise platforms). PROMPT introduces
+  the course lifecycle as a first-class composable structure -- a design abstraction absent from
+  all comparable tools. The Assessment Phase additionally formalizes formative feedback
+  (self-evaluation, peer evaluation, configurable rubric criteria) in a way no existing course
+  administration tool does.
 
-- [ ] **Novelty argument**: _What makes this contribution new compared to the closest prior work?_
-
-- [ ] **Significance**: _Why should the research community care? What does this change?_
+- [x] **Significance**: Reduces per-semester administrative overhead; enables reproducible
+  course processes; provides students with transparent, formalized assessment criteria;
+  the domain-agnostic meta-model is reusable across disciplines; the open-source implementation
+  is immediately deployable by any institution.
 
 ---
 
 ## 4. Research Questions
 
-> Write RQs before designing the methodology. Each RQ must be answerable.
+- [x] **RQ1**: Does the phase-based meta-model adequately capture the administrative structure
+  of project-based courses?
+  - How answered: Feature comparison table (PROMPT vs. Moodle, Canvas, GitHub Classroom, Artemis)
+    against 10 project-course administrative capabilities + multi-semester deployment evidence.
 
-- [ ] **RQ1**: _State the question._
-  - How will it be answered? ___
+- [x] **RQ2**: How do instructors and TAs perceive the utility and usability of PROMPT for
+  managing project-based course administration?
+  - How answered: 5-8 semi-structured instructor/TA interviews, thematic analysis
+    (Braun & Clarke, 2006).
 
-- [ ] **RQ2**: _State the question._
-  - How will it be answered? ___
+- [x] **RQ3**: How effectively does the plugin architecture support institution-specific and
+  discipline-specific extensions without modifying the platform core?
+  - How answered: Student survey (SUS + 13 custom Likert items, especially Assessment Phase)
+    + multi-institution deployment evidence.
 
-- [ ] **RQ3** _(if applicable)_: _State the question._
-  - How will it be answered? ___
-
-- [ ] **Coherence check**: Do all RQs together address the stated gap? ___
+- [x] **Coherence check**: RQ1 validates meta-model design adequacy; RQ2 validates practical
+  usability and utility; RQ3 validates extensibility and formative assessment features.
+  Together they cover design adequacy, practical utility, and generalizability.
 
 ---
 
 ## 5a. Methodology (All Paper Types)
 
-> Match the method to the research questions.
+- [x] **Research method**:
+  - [x] Design science / artifact construction (the platform itself)
+  - [x] User study / survey (student survey)
+  - [x] Interview study (instructor/TA interviews)
+  - [x] Feature comparison (documentary/analytical)
 
-- [ ] **Research method** (tick one):
-  - [ ] Controlled experiment
-  - [ ] User study / survey
-  - [ ] Case study (single or multiple)
-  - [ ] Mining software repositories (MSR)
-  - [ ] Systematic literature review / mapping study
-  - [ ] Design science / artifact construction
-  - [ ] Interview study
-  - [ ] Other: ___
+- [x] **Data / participants**: 5-8 TUM instructors/TAs (interviews); N iPraktikum students
+  (survey); 5 tools (feature comparison: PROMPT, Moodle, Canvas, GitHub Classroom, Artemis).
 
-- [ ] **Data / participants / systems**: _What material is needed to conduct the study?_
+- [x] **Evaluation plan**: (1) feature comparison table against 10 capabilities; (2) thematic
+  analysis of interview transcripts; (3) SUS score + Likert means/SD from student survey;
+  (4) deployment statistics (semesters, students, institutions).
 
-- [ ] **Evaluation plan**: _How will results be measured or validated?_
+- [x] **Baseline / comparison**: Moodle, Canvas, GitHub Classroom, Artemis.
 
-- [ ] **Baseline / comparison**: _What does the approach or result get compared against?_
+- [x] **Statistical approach**: Descriptive statistics for survey (mean, SD, SUS score);
+  thematic analysis for interviews (open coding, axial coding, theme saturation check);
+  inter-rater reliability via Cohen's kappa on 20% sample.
 
-- [ ] **Statistical approach**: _What statistical tests or qualitative analysis methods will be used?_
-
-- [ ] **Ethical considerations**: _Are there IRB requirements, consent forms, or privacy constraints?_
+- [x] **Ethical considerations**: Participant consent required for interviews and survey;
+  data anonymized before reporting; check TUM ethics review requirements before data collection.
 
 ---
 
-## 5b. Methodology — Tool Papers
-
-> Complete this section if the paper is a tool paper.
+## 5b. Methodology - Tool Papers
 
 ### Tool Description
 
-- [ ] **Tool name and purpose**: _What does the tool do in one sentence?_
+- [x] **Tool name and purpose**: PROMPT -- an open-source course administration platform
+  implementing a phase-based course meta-model for project-based courses of any discipline.
 
-- [ ] **Target users**: _Who uses this tool and in what workflow?_
+- [x] **Target users**: Instructors and TAs managing project-based university courses;
+  students interacting with course administration processes (applications, team assignments,
+  feedback).
 
-- [ ] **Implementation**: _Language, platform, key dependencies?_
+- [x] **Implementation**: Frontend: React + TypeScript, Webpack Module Federation
+  (micro-frontend architecture). Backend: Go microservices (one per phase), PostgreSQL,
+  Keycloak authentication. Infrastructure: Docker/Kubernetes. Shared libraries: prompt-sdk
+  (Go), prompt-lib (React).
 
-- [ ] **Architecture**: _What are the main components and how do they interact?_
+- [x] **Architecture**: Micro-frontend shell dynamically loads per-phase micro-frontends at
+  runtime via Webpack Module Federation. Each phase = independent Go microservice + React
+  micro-frontend. Keycloak provides centralized authentication and role management. Each phase
+  has an independent PostgreSQL schema.
 
-- [ ] **Maturity level** (tick one):
-  - [ ] Research prototype (proof of concept)
-  - [ ] Functional tool (tested on real projects)
-  - [ ] Production-ready (deployed, maintained, used externally)
+- [x] **Maturity level**: Production-ready -- deployed at TUM for multiple semesters,
+  supporting 100+ students per semester in the iPraktikum practical course.
 
 ### Tool Evaluation
 
-- [ ] **Correctness**: _How is it verified that the tool does what it claims?_
+- [x] **Correctness**: Multi-semester production deployment at TUM provides implicit operational
+  validation; feature comparison demonstrates alignment with project-course requirements.
 
-- [ ] **Performance**: _Are there efficiency or scalability requirements? How are they evaluated?_
+- [x] **Performance**: Production deployment at TUM scale (100+ students, parallel project
+  teams) demonstrates sufficient scalability; not a primary evaluation focus.
 
-- [ ] **Usability**: _Is a user study planned? What tasks and participants?_
+- [x] **Usability**: Instructor interviews (qualitative, 5-8 participants) +
+  student SUS survey (quantitative, target N=50+).
 
-- [ ] **Comparison**: _What existing tools are compared against, and on what benchmark?_
+- [x] **Comparison**: Feature comparison table -- PROMPT vs. Moodle, Canvas, GitHub Classroom,
+  Artemis on 10 project-course administrative capabilities using a three-level scale
+  (native / partial / not supported).
 
 ### Demo / Presentation
 
-- [ ] **Demo scenario**: _What concrete task or example demonstrates the tool's value?_
+- [x] **Demo scenario**: iPraktikum course lifecycle walkthrough: student applies via
+  Application Phase -> tutors conduct structured interviews via Interview Phase -> teams formed
+  via Team Allocation Phase with TEASE optimization -> three Assessment Phases at project
+  milestones with self-evaluation, peer evaluation, and instructor rubric assessment.
 
-- [ ] **Demo video**: _Is a video required by the venue? What will it show?_ (typical length: 3–5 min)
+- [x] **Demo video**: Not required by Koli; optional supplementary material.
 
-- [ ] **Live demo**: _Is a live demo planned for the presentation?_
+- [x] **Live demo**: Consider for conference presentation -- the live instance at
+  prompt.aet.cit.tum.de supports this.
 
 ---
 
 ## 6. Paper Story / Narrative
 
-> Write the narrative before the paper. Reviewers accept stories, not just results.
+- [x] **One-paragraph story**: "Instructors of large project-based courses face a recurring
+  administrative burden: every semester they reconstruct ad-hoc workflows from spreadsheets,
+  email chains, and LMS plugins to manage applications, team formation, and assessment --
+  tools never designed for this purpose. PROMPT solves this by introducing the phase-based
+  course meta-model, which treats the course lifecycle as a first-class composable structure.
+  The four default phases cover the most common administrative needs, and the Assessment Phase
+  uniquely formalizes formative feedback through configurable criteria, self-evaluation, and
+  peer evaluation -- a pedagogical contribution absent from all comparable tools. Instructor
+  interviews confirm reduced administrative overhead; student survey results show high usability
+  and strong appreciation of the Assessment Phase's transparency. The meta-model's
+  domain-agnostic design means these benefits extend beyond computing education to any
+  project-based course."
 
-- [ ] **One-paragraph story**: _Describe the arc: problem → gap → approach → key result → implication._
+- [x] **The "aha" moment**: The Assessment Phase as a formalized formative feedback mechanism
+  -- not just an administrative tool but a pedagogical one. No other course administration tool
+  provides configurable rubric criteria with self-evaluation, peer evaluation, and instructor
+  assessment in a unified workflow at each milestone.
 
-- [ ] **The "aha" moment**: _What is the one insight or result that makes this paper memorable?_
+- [x] **Null result scenario**: If adoption is only TUM, the paper remains publishable as a
+  deep single-institution case study with strong qualitative evidence. The meta-model
+  contribution stands independently of adoption breadth.
 
-- [ ] **Null result scenario**: _What if the results are negative or mixed — is the paper still publishable? Why?_
-
-- [ ] **Title candidates**: _Write 2–3 candidate titles._
-  1. ___
-  2. ___
-  3. ___
+- [x] **Title candidates**:
+  1. "PROMPT: A Phase-Based Platform for Administering Project-Based Courses"
+  2. "A Phase-Based Course Meta-Model for Project-Based Education: Design and Evaluation of PROMPT"
+  3. "PROMPT: Composable Phase-Based Course Administration for Project-Based Learning"
 
 ---
 
 ## 7. Related Work Positioning
 
-> Identify the 3–5 papers a reviewer will compare this work against.
+- [x] **Moodle** (Dougiamas & Taylor, 2003) -> PROMPT differs: Moodle models courses as
+  content hierarchies; no phase lifecycle, no team structures, no phase-specific workflows.
+  Moodle plugins exist for some features but require per-course manual assembly with no
+  unified lifecycle model.
 
-For each, answer: what does that paper do, and how does this work go beyond or differ?
+- [x] **Artemis** (Krusche & Seitz, 2018) -> PROMPT differs: Artemis is optimized for
+  individual exercise grading and automated feedback in computing education; PROMPT manages
+  the organizational lifecycle of project teams. The two tools are complementary, not competing.
+  Critical to address explicitly since both originate from TUM.
 
-- [ ] **Paper 1**: _Citation_ → _How this work differs_: ___
+- [x] **GitHub Classroom** -> PROMPT differs: GitHub Classroom automates repository creation
+  for team-based projects but has no administrative workflow model beyond repository setup and
+  assignment distribution.
 
-- [ ] **Paper 2**: _Citation_ → _How this work differs_: ___
+- [x] **Canvas** -> PROMPT differs: same structural limitations as Moodle; enterprise focus,
+  not open-source.
 
-- [ ] **Paper 3**: _Citation_ → _How this work differs_: ___
+- [x] **TEASE** -> PROMPT integrates TEASE for team allocation; TEASE addresses one specific
+  administrative task, PROMPT addresses the full course lifecycle.
 
-- [ ] **Paper 4** _(if applicable)_: _Citation_ → _How this work differs_: ___
-
-- [ ] **Paper 5** _(if applicable)_: _Citation_ → _How this work differs_: ___
-
-- [ ] **Positioning statement**: _In one sentence: "Unlike prior work on X, this paper Y."_
+- [x] **Positioning statement**: "Unlike LMS platforms that model courses as flat content
+  hierarchies, and unlike programming exercise platforms that optimize for individual assessment
+  workflows, PROMPT introduces a phase-based course meta-model that treats the course lifecycle
+  as a first-class composable structure -- applicable to any project-based course regardless
+  of discipline."
 
 ---
 
 ## 8. Target Audience
 
-- [ ] **Primary readers**: _Who is this paper written for?_
+- [x] **Primary readers**: CS education researchers and practitioners at Koli; instructors
+  of project-based courses seeking tool support; tool builders in the education technology space.
 
-- [ ] **Takeaway**: _After reading, what should they be able to do or think differently?_
+- [x] **Takeaway**: A ready-to-deploy open-source platform for project-based course
+  administration; an understanding of the phase-based meta-model as a reusable abstraction;
+  a survey instrument and interview protocol for evaluating course administration tools.
 
-- [ ] **Secondary audience**: _Who else benefits (practitioners, tool builders, educators, ...)?_
+- [x] **Secondary audience**: Instructors outside CS (engineering, design, business) who face
+  the same administrative challenges; researchers studying formative assessment in PBL contexts.
 
 ---
 
 ## 9. Scope and Anticipated Limitations
 
-> Setting scope explicitly prevents reviewer criticism of things you never claimed.
+- [x] **In scope**: Administrative lifecycle of project-based courses; PROMPT platform design
+  and default phases; usability and utility from instructor and student perspectives; feature
+  comparison with existing tools.
 
-- [ ] **In scope**: _What does this work explicitly address?_
+- [x] **Out of scope**: Learning outcomes assessment; LMS features unrelated to project course
+  administration; automated grading (not a PROMPT feature by design).
 
-- [ ] **Out of scope**: _What is intentionally excluded and why?_
+- [x] **Threats to internal validity**: Feature comparison criteria self-selected by authors
+  (bias toward capabilities PROMPT provides); interview participants all known PROMPT users
+  from TUM (selection bias); survey instrument designed by authors (instrument bias).
 
-- [ ] **Threats to internal validity**: _What could bias the results within the study?_
+- [x] **Threats to external validity**: Evaluation limited to TUM and iPraktikum; no empirical
+  cross-disciplinary validation; findings may not generalize to smaller courses, non-European
+  institutions, or non-team-based project courses.
 
-- [ ] **Threats to external validity**: _How generalizable are the findings? What populations or contexts are excluded?_
+- [x] **Threats to construct validity**: SUS measures perceived usability, not task performance;
+  custom Likert items lack external validation; interview themes reflect perceptions rather than
+  behavioral data; time savings are instructor estimates, not measured values.
 
-- [ ] **Threats to construct validity**: _Do the measures actually capture what they claim to?_
-
-- [ ] **Mitigation strategies**: _How will threats be addressed or acknowledged?_
+- [x] **Mitigation strategies**: Use three-level scale in feature comparison; report SUS
+  alongside custom items; follow Braun & Clarke protocol; calculate inter-rater reliability;
+  acknowledge all threats in Discussion.
 
 ---
 
 ## 10. Venue Fit
 
-- [ ] **Why this venue**: _Why is this the right venue for this contribution?_
+- [x] **Why this venue**: Koli Calling is the premier European computing education conference;
+  the System and Tool Paper category is an exact match; Koli's intimate atmosphere (single-track)
+  suits a tool presentation with live demo potential.
 
-- [ ] **CFP alignment**: _Which topics from the call for papers does this work address?_
+- [x] **CFP alignment**: "Development, use, and evaluation of tools to support computing
+  education" -- direct match. "Teaching approaches and assessment in computing education" --
+  matches the Assessment Phase contribution.
 
-- [ ] **Format fit**: _Does the contribution type match what this venue typically accepts?_
+- [x] **Format fit**: System and Tool Paper, 10 pages + references, ACM double-column.
+  Confirmed match.
 
-- [ ] **Page budget sketch**: _Rough allocation of pages per section:_
-  - Introduction: ___ p
-  - Related Work: ___ p
-  - Methodology: ___ p
-  - Results: ___ p
-  - Discussion: ___ p
-  - Conclusion: ___ p
-  - References: ___ p
-  - Total: ___ / ___ allowed
+- [x] **Page budget sketch**:
+  - Introduction: 1.5p
+  - Background and Motivation: 1.5p
+  - The PROMPT Platform: 2.5p
+  - Evaluation: 2.5p
+  - Discussion: 1.5p
+  - Conclusion: 0.5p
+  - References: ~1-2p (excluded from limit)
+  - Total: 10p / 10p allowed
 
 ---
 
 ## 11. Replication Package
 
-> Plan the replication package before the study begins — retrofitting is harder.
-
 ### Content
 
-- [ ] **Raw data**: _What raw data will be collected and included?_
+- [x] **Raw data**: Anonymized interview transcripts (pending consent); anonymized survey
+  response data.
 
-- [ ] **Processed data**: _What derived datasets, annotations, or aggregated results?_
+- [x] **Processed data**: Coded themes from interviews; aggregated survey statistics;
+  feature comparison scoring rationale.
 
-- [ ] **Code / scripts**: _Analysis scripts, tool source code, build scripts?_
+- [x] **Code / scripts**: PROMPT platform source code (public at
+  https://github.com/prompt-edu/prompt); analysis scripts for survey data.
 
-- [ ] **Models / configs**: _Trained models, configuration files, prompts?_
+- [x] **Documentation**: Interview guide, survey instrument, feature comparison methodology.
 
-- [ ] **Documentation**: _README, data dictionary, codebook, protocol?_
-
-- [ ] **Supplementary material**: _Anything too large for the paper (full tables, interview guides, ...)?_
+- [x] **Supplementary material**: Full feature comparison table; full interview protocol;
+  full survey instrument.
 
 ### Sharing Constraints
 
-- [ ] **Privacy / ethics**: _Is any data subject to IRB restrictions or participant privacy requirements?_
+- [x] **Privacy / ethics**: Interview and survey data anonymized before release; participant
+  consent required for any transcript sharing.
 
-- [ ] **Anonymization**: _What must be removed or pseudonymized before release?_
+- [x] **Anonymization**: Participant identifiers removed; institution details generalized
+  where needed for blind review.
 
-- [ ] **Licensing**: _What license will be applied?_ (e.g., MIT, CC BY 4.0, CC BY-NC 4.0)
-
-- [ ] **Proprietary dependencies**: _Are there tools, datasets, or APIs that cannot be redistributed?_
+- [x] **Licensing**: MIT (platform code, already open-source); CC BY 4.0 (research data and
+  instruments).
 
 ### Hosting and Availability
 
-- [ ] **Repository**: _Where will the package be hosted?_ (e.g., Zenodo, GitHub + Zenodo DOI, institutional repo)
+- [x] **Repository**: GitHub (platform code) + Zenodo (research data, instruments, analysis
+  scripts).
 
-- [ ] **Persistent identifier**: _Will a DOI be minted?_ (Zenodo provides this automatically)
+- [x] **Persistent identifier**: Zenodo DOI for research data package.
 
-- [ ] **Archive snapshot**: _Will the repository be frozen/tagged at submission?_
+### Artifact Evaluation
 
-### Artifact Evaluation (if applicable)
+- [x] **AE track**: Koli Calling does not have a formal AE track; open-source availability
+  with deployment instructions serves as the artifact contribution.
 
-- [ ] **AE track**: _Does the venue have an artifact evaluation track?_
-
-- [ ] **Target badges** (tick all that apply):
-  - [ ] Artifacts Available (publicly accessible with persistent ID)
-  - [ ] Artifacts Functional (can be run, produces claimed outputs)
-  - [ ] Artifacts Reusable (documented, extensible, usable beyond this paper)
-
-- [ ] **AE README**: _Does the package include a dedicated README for evaluators with step-by-step instructions?_
-
-- [ ] **Estimated setup time**: _How long does it take an evaluator to set up and run the artifacts?_ ___
+- [x] **Target badges**: Artifacts Available (GitHub + Zenodo); Artifacts Functional
+  (live deployment at prompt.aet.cit.tum.de).
 
 ---
 
 ## 12. Readiness Check
 
-> Answer all questions before starting to write. If any are unclear, resolve them first.
+- [x] The core problem is stated in one precise sentence.
+- [x] The gap is distinct from "related work exists."
+- [x] The contribution is stated in one sentence with a clear novelty argument.
+- [x] All research questions are specific and answerable with the planned methodology.
+- [x] The methodology matches the research questions.
+- [x] The paper story is written as a coherent paragraph.
+- [x] The 3-5 closest related papers are identified and differentiation is clear.
+- [x] The replication package content is planned and sharing constraints are known.
+- [x] The page budget is sketched and fits the venue's limit.
+- [x] Tool architecture, evaluation, and demo scenario are defined.
 
-- [ ] The core problem is stated in one precise sentence.
-- [ ] The gap is distinct from "related work exists."
-- [ ] The contribution is stated in one sentence with a clear novelty argument.
-- [ ] All research questions are specific and answerable with the planned methodology.
-- [ ] The methodology matches the research questions.
-- [ ] The paper story is written as a coherent paragraph.
-- [ ] The 3–5 closest related papers are identified and the differentiation is clear.
-- [ ] The replication package content is planned and sharing constraints are known.
-- [ ] The page budget is sketched and fits the venue's limit.
-- [ ] _(Tool papers)_ The tool architecture, evaluation, and demo scenario are defined.
-
-**Ready to write?** All boxes above checked → yes. Otherwise, resolve open items first.
+**Ready to write? Yes** -- all boxes checked.

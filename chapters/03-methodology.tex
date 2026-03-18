@@ -1,90 +1,91 @@
-% Methodology Chapter
-% Covers: research design, data collection, analysis, evaluation, ethics, limitations.
-% Tool paper authors: also complete the Tool Paper section at the bottom of this file.
-% See .claude/concept.md sections 5a and 5b before writing this chapter.
+% The PROMPT Platform
+% Covers: design goals, phase-based meta-model, default phases, architecture, extension system, deployment
+% See .claude/concept.md section 5b before writing this chapter.
 
-\label{sec:methodology}
+\label{sec:prompt}
 
-This chapter describes the research methodology employed to address the research questions outlined in \autoref{sec:introduction}.
+\subsection{Design Goals}
 
-\subsection{Research Design}
-% Concept §5a — State the research method type and justify the choice.
-\missing{Describe the overall research design and justify the choice of method (e.g., controlled experiment, case study, user study, MSR, design science)}
+PROMPT's design is grounded in five requirements derived from the administrative needs of project-based courses identified in \autoref{sec:background}.
+First, the platform must model courses as ordered sequences of phases, making the course lifecycle an explicit, manageable structure.
+Second, each phase must operate independently: activating, running, and concluding a phase must not require changes to other phases.
+Third, institutions must be able to extend the platform with discipline-specific phase modules without modifying the PROMPT core.
+Fourth, the platform must provide role-differentiated views for students, tutors, instructors, and external clients, each with access appropriate to their responsibilities.
+Fifth, the platform must achieve production reliability at the scale of large university courses (100+ students, multiple tutors, parallel project teams).
 
-\subsection{Data Collection}
-% Concept §5a — What material is needed and how is it gathered?
-\missing{Describe data collection methods, sources, and procedures}
+\subsection{Phase-Based Course Meta-Model}
 
-\subsubsection{Participants}
-% Remove this subsection if the study does not involve human participants.
-\missing{Describe study participants, selection criteria, and demographics}
+The phase-based course meta-model is the central conceptual contribution of PROMPT:
+a course is defined as a named container of an ordered sequence of phase instances, where each phase instance encapsulates its own data model, administrative workflows, and user interface, and can be activated, operated, and deactivated independently of other phases.
+A phase instance is created by selecting a phase type (e.g., Application, Assessment) and configuring its parameters for the specific course iteration;
+multiple instances of the same phase type can appear in a single course (e.g., three Assessment phases corresponding to three project milestones).
+Figure~\ref{fig:meta-model} illustrates the meta-model and its instantiation for iPraktikum:
+the course progresses through an Application Phase, an Interview Phase, a Team Allocation Phase, and three Assessment Phases corresponding to project milestones.
+The model is domain-agnostic:
+any course whose administration can be structured as an ordered sequence of phases -- regardless of discipline -- can be administered using PROMPT.
 
-\subsubsection{Data Sources}
-\missing{Describe the sources of data used in the study}
+\subsection{Default Phase Implementations}
 
-\subsection{Data Analysis}
-% Concept §5a — Describe analysis methods and statistical approach.
-\missing{Describe data analysis methods, statistical tests, or qualitative analysis procedures}
+PROMPT ships with four production-ready phase implementations that address the most common administrative requirements of project-based courses.
+These default phases provide immediate value without any plugin development and serve as reference implementations for custom phase authors.
 
-\subsection{Evaluation Criteria}
-% Concept §5a — What does success look like? What baseline is used for comparison?
-\missing{Define criteria used to evaluate results and describe the comparison baseline}
+\subsubsection{Application Phase}
 
-The following criteria were used to evaluate the approach:
-\begin{itemize}
-    \item \missing{First evaluation criterion}
-    \item \missing{Second evaluation criterion}
-    \item \missing{Third evaluation criterion}
-\end{itemize}
+The Application Phase enables students to submit structured applications to the course using instructor-defined question forms, and provides instructors and tutors with a consolidated review interface for evaluating, annotating, and ranking applicants.
+The phase supports configurable application questions, bulk status updates, and export of applicant data to downstream phases.
 
-\subsection{Ethical Considerations}
-% Concept §5a — IRB approval, informed consent, data privacy, anonymization.
-% Remove this subsection if no human participants or sensitive data are involved.
-\missing{Describe ethical considerations, IRB approval status, consent procedures, and any data anonymization steps}
+\subsubsection{Interview Phase}
 
-\subsection{Limitations}
-% Concept §9 — Methodological limitations known before results are collected.
-\missing{Acknowledge limitations of the methodology and their potential impact on results}
+The Interview Phase manages the scheduling, assignment, and documentation of student interviews following the Application Phase.
+Tutors access structured interview forms specific to each applicant, and instructors view a consolidated dashboard of interview outcomes and scores, supporting pass/fail decisions before team formation.
 
+\subsubsection{Team Allocation Phase}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% TOOL PAPER SECTION
-%% Uncomment and complete this section if this is a tool paper (concept.md §5b).
-%% Remove entirely for empirical studies, literature reviews, etc.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The Team Allocation Phase supports both instructor-driven and student-driven team formation, integrating with the TEASE decision-support system~\cite{tease} for constraint-based team optimization.
+Instructors configure team size constraints, project slot capacities, and allocation preferences;
+the resulting team assignments are propagated automatically to downstream phases.
 
-% \subsection{Tool Description}
-% % Concept §5b — Name, purpose, users, implementation, architecture, maturity.
-% \missing{Introduce the tool: what it does, who uses it, and in what workflow}
-%
-% \subsubsection{Architecture}
-% \missing{Describe the main components and their interactions; include a figure if helpful}
-%
-% \subsubsection{Implementation}
-% \missing{State the implementation language, platform, and key dependencies}
-%
-% \subsubsection{Maturity}
-% % Tick one: research prototype / functional tool / production-ready
-% \missing{State the maturity level and provide evidence (e.g., number of users, deployed projects)}
-%
-% \subsection{Tool Evaluation}
-% % Concept §5b — Correctness, performance, usability, comparison with existing tools.
-%
-% \subsubsection{Correctness}
-% \missing{Describe how correctness is verified (e.g., test suite, benchmark, manual inspection)}
-%
-% \subsubsection{Performance}
-% \missing{Describe efficiency or scalability evaluation (if applicable)}
-%
-% \subsubsection{Usability Study}
-% % Remove if no usability study is conducted.
-% \missing{Describe the usability study: tasks, participants, procedure, and metrics}
-%
-% \subsubsection{Comparison with Existing Tools}
-% \missing{Describe how the tool is compared with related tools and on what benchmark}
-%
-% \subsection{Demonstration}
-% % Concept §5b — Scenario, video, live demo.
-% \missing{Describe the demonstration scenario that illustrates the tool's core value}
-% % If a demo video is required by the venue, reference it here:
-% % A demonstration video is available at \githubRepo.
+\subsubsection{Assessment Phase}
+
+The Assessment Phase is the pedagogically most significant default phase:
+it formalizes formative feedback by providing a unified workflow for self-evaluation, peer evaluation, and instructor assessment at each project milestone.
+Instructors configure assessment criteria specific to each phase instance, defining rubric dimensions, scoring scales, and weights appropriate to the milestone's pedagogical objectives;
+these criteria are transparently communicated to students throughout the phase, not only at evaluation time.
+Student self-evaluation prompts structured reflection on individual contributions, while peer evaluation forms guide students in providing criterion-level feedback to teammates, developing critical evaluation skills alongside domain knowledge.
+Instructor assessment uses the same criterion framework, enabling direct comparison between self, peer, and instructor evaluations and supporting evidence-based feedback conversations between tutors and students.
+Unlike summative grading tools, the Assessment Phase is designed for formative feedback loops:
+all parties receive and provide feedback at each milestone, enabling course corrections before the final project outcome.
+
+\begin{fulfillment}
+Formative feedback: the Assessment Phase provides self-evaluation, peer evaluation, and instructor assessment against shared, configurable rubric criteria at each milestone, satisfying the requirement for structured formative feedback in project-based courses.
+\end{fulfillment}
+
+\subsection{System Architecture}
+
+PROMPT implements the phase-based meta-model using a micro-frontend architecture that enables each phase module to be developed, deployed, and maintained independently of the platform core.
+A React/TypeScript shell application dynamically loads phase-specific micro-frontends at runtime via Webpack Module Federation~\cite{webpack-module-federation}, with each phase frontend registered as a separately deployable remote module.
+The backend follows a corresponding microservice architecture:
+each phase is backed by an independent Go microservice that exposes a REST API consumed exclusively by its frontend module.
+Authentication and role management are centralized in a Keycloak instance, providing a single source of truth for user identities and role assignments (student, tutor, instructor, client) across all phase modules.
+Figure~\ref{fig:architecture} illustrates the component relationships and deployment boundaries.
+
+\subsection{Extension System}
+
+An institution adding a custom phase implements two artifacts:
+a Go microservice conforming to the PROMPT SDK interface~\cite{prompt-sdk} and a React micro-frontend exporting the required Module Federation entry points, both deployed independently without modifying any PROMPT core component.
+The PROMPT SDK provides shared utilities for authentication verification, course context propagation, and CRUD scaffolding, reducing new phase implementation to phase-specific business logic.
+The micro-frontend contract requires implementing a defined set of React component exports (main view, instructor view, student view, configuration panel) that the shell application mounts at the appropriate navigation routes.
+
+\begin{fulfillment}
+Phase independence: each phase module is deployed as an independent container; activating or deactivating one phase has no effect on others.
+\end{fulfillment}
+
+\begin{fulfillment}
+Institution-specific extension: custom phases require no changes to PROMPT core; the SDK provides all necessary integration points, allowing institutions to implement discipline-specific phases.
+\end{fulfillment}
+
+\subsection{Deployment and Availability}
+
+PROMPT is deployed in production at \university{} via Kubernetes and has administered the iPraktikum practical course across \missing{N} semesters with \missing{X} total students.
+The platform is released as open-source software under the MIT license at \url{https://github.com/prompt-edu/prompt}, with a community Discord server, GitHub Discussions, and an active issue tracker.
+Deployment artifacts include Docker Compose files for local development and Kubernetes manifests for production deployment.

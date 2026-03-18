@@ -204,10 +204,13 @@
 \newcommand{\chapterfocus}[1]{\todo[inline,color=lightgray,caption={}]{\textbf{Focus}: #1}}
 
 % Anonymity placeholders (uncomment for anonymous submission)
-% TODO: Customize these placeholders for your specific paper
-\newcommand{\universityname}{[UNIVERSITY]}
-\newcommand{\cityname}{[CITY]}
-\newcommand{\groupname}{[RESEARCH GROUP]}
+\newcommand{\universityname}{Technical University of Munich}
+\newcommand{\cityname}{Munich}
+\newcommand{\groupname}{Applied Education Technologies}
+% Shorthand aliases used in text
+\newcommand{\university}{\universityname}
+\newcommand{\city}{\cityname}
+\newcommand{\group}{\groupname}
 
 
 % GitHub repository placeholders for anonymous submission
@@ -248,14 +251,17 @@
 %% end of the preamble, start of the body of the document source.
 \begin{document}
 
-% Acronym definitions - TODO: Add your specific acronyms
+% Acronym definitions
 \newacronym{ide}{IDE}{Integrated Development Environment}
 \newacronym{api}{API}{Application Programming Interface}
-% Add more acronyms as needed
+\newacronym{lms}{LMS}{Learning Management System}
+\newacronym{sus}{SUS}{System Usability Scale}
+\newacronym{pbl}{PBL}{Project-Based Learning}
+\newacronym{ta}{TA}{Teaching Assistant}
 
 %%
 %% The "title" command has an optional parameter for short title in headers
-\title{Paper Title: TODO - Replace with Your Title}
+\title{PROMPT: A Phase-Based Platform for Administering Project-Based Courses}
 
 %%
 %% Author definitions - TODO: Replace with your author information
@@ -296,26 +302,23 @@
 %%
 %% Abstract
 \begin{abstract}
-    % Component 1: Importance/Problem Statement - Establish context and the specific problem
-    \missing{Start with 1-2 sentences establishing why this research area matters. Then state the specific problem or challenge that motivates this work. Example: "X is critical for Y, but Z remains a significant challenge..."}
-    %
-    % Component 2: Research Gap - Articulate what is missing in current approaches
-    \missing{Identify the gap in existing solutions or knowledge in 1 sentence. Example: "Existing approaches fail to address X because they do not account for Y..."}
-    %
-    % Component 3: Objective - State precisely what this research aims to achieve
-    \missing{State the specific objective or research goal in 1 sentence. Example: "This paper presents X, a novel approach that Y to achieve Z..." or "This study examines X to determine Y..."}
-    %
-    % Component 4: Methodology - Describe the approach concisely
-    \missing{Briefly describe the methodology, techniques, or approach used in 1-2 sentences. Example: "The approach combines X with Y to enable Z..." or "The study employs X method with N participants..."}
-    %
-    % Component 5: Key Findings - Present the most significant results
-    \missing{Summarize the key results or contributions in 1-2 sentences. Be specific with quantitative results where possible. Example: "Evaluation demonstrates X achieves Y, improving Z by N\% compared to baseline..." or "Analysis reveals three key factors: X, Y, and Z..."}
-    %
-    % Component 6: Implications - Explain broader impact or significance
-    \missing{Conclude with 1 sentence on the broader significance, implications, or impact. Example: "These findings enable X and suggest Y for future Z..." or "The results provide X with implications for Y..."}
-    %
-    % IMPORTANT: Target 150-200 words total (ACM allows up to 250, but concise is better)
-    % Remember: No use of "our", minimal use of "we", prefer active voice
+Project-based courses require a structured administrative lifecycle -- application, team formation,
+iterative project phases, and formative assessment -- that existing \acrlongpl{lms} are not designed to support.
+Current tools model courses as flat content hierarchies, providing no first-class support for
+phase-specific workflows, team-based structures, or formalized formative feedback.
+This paper presents PROMPT, an open-source course administration platform built around a
+phase-based course meta-model, in which a course is modeled as an ordered sequence of composable,
+independently operable phase instances.
+PROMPT ships with four production-ready default phase implementations -- Application, Interview,
+Team Allocation, and Assessment -- and a plugin architecture for institution-specific extensions.
+The Assessment Phase uniquely formalizes formative feedback through configurable rubric-based
+criteria, self-evaluation, and peer evaluation at each project milestone.
+PROMPT has been deployed in production at \university{} across \missing{N} semesters,
+supporting \missing{X} students in the iPraktikum practical course.
+An evaluation comprising a feature comparison with four existing tools, semi-structured
+instructor interviews, and a student \acrshort{sus} survey demonstrates the adequacy of the
+meta-model and the usability of the platform.
+PROMPT is available open-source at \url{https://github.com/prompt-edu/prompt}.
 \end{abstract}
 
 %%
@@ -323,24 +326,24 @@
 \begin{CCSXML}
 <ccs2012>
    <concept>
-       <concept_id>10011007.10011074.10011075</concept_id>
-       <concept_desc>Software and its engineering~Designing software</concept_desc>
+       <concept_id>10010405.10010489</concept_id>
+       <concept_desc>Applied computing~Education</concept_desc>
        <concept_significance>500</concept_significance>
    </concept>
    <concept>
-       <concept_id>10010405.10010489.10010491</concept_id>
-       <concept_desc>Applied computing~Interactive learning environments</concept_desc>
-       <concept_significance>500</concept_significance>
+       <concept_id>10011007.10011074.10011099.10011102</concept_id>
+       <concept_desc>Software and its engineering~Software frameworks</concept_desc>
+       <concept_significance>300</concept_significance>
    </concept>
 </ccs2012>
 \end{CCSXML}
 
-\ccsdesc[500]{Software and its engineering~Designing software}
-\ccsdesc[500]{Applied computing~Interactive learning environments}
+\ccsdesc[500]{Applied computing~Education}
+\ccsdesc[300]{Software and its engineering~Software frameworks}
 
 %%
-%% Keywords - TODO: Update with your paper's keywords
-\keywords{keyword1, keyword2, keyword3, keyword4, keyword5}
+%% Keywords
+\keywords{course administration, project-based learning, formative assessment, micro-frontend architecture, computing education}
 
 %%
 %% Received date (optional)
@@ -356,13 +359,13 @@
 \section{Introduction}
 \input{chapters/01-introduction}
 
-\section{Related Work}
+\section{Background and Motivation}
 \input{chapters/02-related-work}
 
-\section{Methodology}
+\section{The PROMPT Platform}
 \input{chapters/03-methodology}
 
-\section{Results}
+\section{Evaluation}
 \input{chapters/04-results}
 
 \section{Discussion}

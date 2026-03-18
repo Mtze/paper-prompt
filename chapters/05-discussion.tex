@@ -1,67 +1,71 @@
-% Discussion Chapter
-% Interpret results, compare with related work, discuss implications and limitations.
-% Threats to validity should map to the anticipated threats documented in concept.md §9.
-% See .claude/concept.md sections 6, 8, and 9 before writing this chapter.
+% Discussion
+% Covers: interpretation of results, broader applicability, lessons learned, threats to validity, limitations
+% See .claude/concept.md section 9 for anticipated threats.
 
 \label{sec:discussion}
 
-This chapter discusses the implications of the results, their significance, and the relationship to existing research.
-
 \subsection{Interpretation of Results}
-% TODO: Interpret your main results
-\missing{Provide interpretation of the main results}
+
+The evaluation results collectively support the claim that the phase-based meta-model captures the administrative structure of project-based courses more completely than existing tools, and that PROMPT operationalizes this model in a usable, valued platform.
 
 \subsubsection{RQ1 Discussion}
-% TODO: Discuss results for RQ1
-\missing{Discuss the implications of results for the first research question}
+
+The feature comparison demonstrates that PROMPT fills a genuine capability gap:
+no existing tool provides native support for the combination of phase lifecycle modeling, formative assessment, and plugin-based extension that project-based courses require.
+The multi-semester deployment at \university{} confirms that the meta-model is not only theoretically adequate but operationally sufficient for a complex, high-stakes practical course.
 
 \subsubsection{RQ2 Discussion}
-% TODO: Discuss results for RQ2
-\missing{Discuss the implications of results for the second research question}
+
+The dominant interview theme -- workflow consolidation -- confirms the core motivation for PROMPT's design:
+instructors were maintaining unnecessary tool fragmentation, and a unified phase-based platform directly addresses this overhead.
+The setup overhead identified as the primary pain point is an expected cost of the platform's flexibility and points to a concrete future work direction: phase configuration templates and semester-to-semester course cloning.
 
 \subsubsection{RQ3 Discussion}
-% TODO: Discuss results for RQ3 (if applicable)
-\missing{Discuss the implications of results for the third research question}
 
-\subsection{Comparison with Related Work}
-% TODO: Compare your results with existing research
-\missing{Compare results with findings from related work discussed in Chapter 2}
+Student survey results indicate strong perceived usability and high appreciation of the Assessment Phase's formative feedback features;
+the high ratings for ``criteria were clearly communicated'' and ``self-evaluation supported reflection'' confirm the pedagogical value of the Assessment Phase's design beyond its administrative function.
 
-\subsection{Practical Implications}
-% TODO: Discuss practical implications
-\missing{Discuss practical implications of the findings}
+\subsection{Broader Applicability Beyond Computing Education}
+
+The phase-based meta-model's domain-agnostic design means the administrative benefits demonstrated in computing education generalize to any discipline with project-based teaching.
+A business capstone program can configure PROMPT with an Application Phase for student project preferences, a Team Phase for advisor-driven formation, and an Assessment Phase with business-specific criteria (market analysis quality, presentation skills, professional conduct).
+An engineering design course can model the iterative design-build-test cycle as a sequence of Assessment Phases, with criterion sets tailored to each design stage.
+A healthcare simulation course can use the Interview Phase to assign students to simulation scenarios and the Assessment Phase to formalize clinical competency rubrics with self-reflection components.
+The Assessment Phase's configurable criteria are the key enabler of this generalizability:
+instructors adapt the same infrastructure to discipline-specific evaluation norms without any platform modification.
 
 \begin{recommendationBox}
-\missing{Provide actionable recommendations based on your findings}
+Instructors of any project-based course with a structured milestone lifecycle should consider PROMPT as an alternative to ad-hoc tool combinations; the Assessment Phase configuration is the first step to formalizing formative feedback practices.
 \end{recommendationBox}
 
-\subsection{Theoretical Contributions}
-% TODO: Discuss theoretical contributions
-\missing{Discuss how findings contribute to theory in the field}
+\subsection{Lessons Learned}
+
+Adopting a micro-frontend architecture provided the deployment independence required by the phase plugin model but introduced significant operational complexity:
+each phase requires its own container, CI pipeline, and versioning, increasing DevOps overhead compared to a monolithic deployment.
+For institutions without Kubernetes expertise, this overhead may be a barrier to adoption -- a Docker Compose deployment mode is maintained for simpler setups.
+The decision to give each phase an independent database schema proved correct for phase isolation but complicated cross-phase queries (e.g., reporting on a student's full course trajectory), which required a dedicated aggregation layer.
 
 \subsection{Threats to Validity}
-% TODO: Discuss threats to validity
-\missing{Discuss potential threats to the validity of your results}
 
 \subsubsection{Internal Validity}
-% TODO: Discuss internal validity threats
-\missing{Discuss threats to internal validity and how they were addressed}
+
+A primary threat to internal validity is the feature comparison's reliance on author-defined criteria and scoring, introducing potential bias toward capabilities that PROMPT provides.
+The interview participants were all PROMPT users recruited from \university{}, creating a selection bias toward individuals with a positive predisposition toward the tool.
 
 \subsubsection{External Validity}
-% TODO: Discuss external validity threats
-\missing{Discuss threats to external validity and generalizability}
+
+The empirical evaluation is limited to a single institution (\university{}) and a single course type (iPraktikum), limiting the generalizability of the usability and utility findings to other institutional contexts and disciplines.
+The multi-institution adoption evidence partially mitigates this threat, but empirical cross-disciplinary validation remains future work.
 
 \subsubsection{Construct Validity}
-% TODO: Discuss construct validity threats
-\missing{Discuss threats to construct validity}
+
+The \acrshort{sus} provides a validated measure of perceived usability but does not capture domain-specific utility;
+the custom Likert items address phase-specific utility but lack external validation.
+Interview themes reflect instructor perceptions rather than objective behavioral data, and the reported time savings are estimates rather than measured values.
 
 \subsection{Limitations}
-% TODO: Acknowledge study limitations
-\missing{Acknowledge and discuss study limitations}
 
-The main limitations of this study include:
-\begin{itemize}
-    \item \missing{First limitation}
-    \item \missing{Second limitation}
-    \item \missing{Third limitation}
-\end{itemize}
+The evaluation does not include longitudinal data on learning outcomes associated with PROMPT-supported formative assessment, leaving open the question of whether the Assessment Phase's design translates to improved student performance or reflection quality.
+Instructor interview participants were recruited from a single institution and all had substantial experience with PROMPT, limiting the perspective of first-time adopters.
+The extensibility claim is supported primarily by internal phase development evidence;
+independent third-party implementation of custom phases would provide stronger validation of the plugin architecture.

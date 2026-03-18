@@ -1,46 +1,48 @@
-% Introduction Chapter
-% Covers: problem, gap, contribution, RQs, paper structure
-% See .claude/concept.md sections 1–4 before writing this chapter.
+% Introduction
+% Covers: problem statement, motivation, research gap, RQs, contributions, paper structure
 
 \label{sec:introduction}
 
-This chapter introduces the research problem, the research gap, and the main contributions of this work.
-
 \subsection{Problem Statement}
-% Concept §1 — What specific problem does this paper address? Who is affected and why now?
-\missing{Describe the specific problem this research addresses, who faces it, and why it matters now}
+
+Project-based courses across disciplines share a common administrative challenge:
+the course lifecycle unfolds across distinct organizational phases -- application, team formation, iterative project work, and formative assessment -- yet no existing course administration tool provides a structured model for managing these phases as first-class entities.
+Instructors of project-based courses currently rely on fragile combinations of spreadsheets, email, and general-purpose \acrfull{lms} plugins, resulting in recurring manual effort, limited process consistency, and poor lifecycle transparency for students and instructors alike.
 
 \subsection{Motivation}
-% Concept §1 — Why is solving this problem important? What goes wrong without a solution?
-\missing{Explain why solving this problem is important and relevant}
+
+The absence of purpose-built administration tooling has concrete consequences:
+teams are formed through manual spreadsheet coordination, assessment criteria are communicated informally rather than enforced through tooling, and each course iteration requires instructors to reconstruct the same administrative workflows from scratch.
+These limitations motivate a platform that models the course lifecycle explicitly, making phases, transitions, and evaluation criteria first-class design elements.
 
 \subsection{Research Gap}
-% Concept §2 — What exists, where does it fall short, and what is the precise gap?
-\missing{Summarize existing approaches and articulate the specific gap this work addresses}
+
+Existing \acrshort{lms} platforms such as Moodle~\cite{moodle} and Canvas model courses as flat repositories of content and assignments, providing no native support for phase-specific workflows or lifecycle-driven administration.
+Specialized computing education platforms such as Artemis~\cite{artemis} and GitHub Classroom~\cite{github-classroom} optimize for individual exercise submission and automated grading, addressing a different administrative problem.
+No existing open-source platform provides a composable, phase-based abstraction for managing the full administrative lifecycle of project-based courses.
 
 \subsection{Research Questions}
-% Concept §4 — Each RQ must be specific and answerable with the planned methodology.
+
 This paper addresses the following research questions:
 \begin{enumerate}
-    \item \textbf{RQ1:} \missing{First research question}
-    \item \textbf{RQ2:} \missing{Second research question}
-    \item \textbf{RQ3:} \missing{Third research question (if applicable)}
+    \item \textbf{RQ1:} Does the phase-based course meta-model in PROMPT adequately capture the administrative structure of project-based courses?
+    \item \textbf{RQ2:} How do instructors and \acrshortpl{ta} perceive the utility and usability of PROMPT for managing project-based course administration?
+    \item \textbf{RQ3:} How effectively does the plugin architecture support institution-specific and discipline-specific extensions without modifying the platform core?
 \end{enumerate}
 
 \subsection{Contributions}
-% Concept §3 — State each contribution precisely; include the novelty argument.
-The main contributions of this work are:
+
+The main contributions of this paper are:
 \begin{itemize}
-    \item \missing{First contribution}
-    \item \missing{Second contribution}
-    \item \missing{Third contribution}
+    \item A phase-based course meta-model that treats the course lifecycle as an ordered sequence of composable, independently operable phase instances -- a reusable abstraction for any project-based course regardless of discipline.
+    \item PROMPT, an open-source course administration platform implementing the meta-model, with four production-ready default phase implementations (Application, Interview, Team Allocation, and Assessment) and a plugin architecture for custom extensions.
+    \item An empirical evaluation via structured instructor interviews and a student \acrshort{sus} survey, complemented by a feature comparison with existing tools and multi-semester deployment evidence.
 \end{itemize}
 
 \subsection{Paper Structure}
-% Update this once the section structure is finalized.
-The remainder of this paper is organized as follows:
-\autoref{sec:related-work} reviews related work and positions this work within the existing literature.
-\autoref{sec:methodology} describes the research methodology.
-\autoref{sec:results} presents the results of the study.
-\autoref{sec:discussion} discusses the findings and their implications.
-\autoref{sec:conclusion} concludes the paper and outlines future work.
+
+\autoref{sec:background} reviews existing course administration tools and establishes the research gap.
+\autoref{sec:prompt} describes the PROMPT platform, its phase-based meta-model, default phase implementations, and system architecture.
+\autoref{sec:evaluation} presents the evaluation methodology and results addressing the three research questions.
+\autoref{sec:discussion} interprets the findings, discusses broader applicability, and acknowledges limitations.
+\autoref{sec:conclusion} summarizes the contributions and outlines future work.

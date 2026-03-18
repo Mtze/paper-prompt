@@ -1,41 +1,30 @@
-% Related Work Chapter
-% Organize by theme, not chronologically. For each area: what exists, where it falls short.
-% Close with a gap summary and explicit positioning statement.
+% Background and Motivation
+% Covers: project-based courses, existing tools, research gap
 % See .claude/concept.md sections 2 and 7 before writing this chapter.
 
-\label{sec:related-work}
+\label{sec:background}
 
-This chapter reviews existing research relevant to this work and positions the contributions within the current state of the art.
+\subsection{Project-Based Courses and Their Administrative Structure}
 
-% Organize subsections by research theme, not by paper or chronology.
-% Rename the subsections below to match the themes relevant to this paper.
+Project-based learning engages students in authentic, extended team projects that simulate professional work environments, and is employed across disciplines from software engineering to industrial design, business management, and healthcare education~\cite{pbl}.
+These courses share a common administrative structure: students apply or are enrolled, are allocated to project teams, progress through iterative project phases with milestone-based checkpoints, and receive formative feedback throughout before a final summative evaluation.
+The iPraktikum practical course at \university{} illustrates this structure:
+each semester, over 100 students apply to the course, undergo interviews, are allocated to client-sponsored project teams, and progress through multiple development iterations with assessment at each milestone.
+Managing this lifecycle across dozens of teams, multiple tutors, and external clients represents significant administrative overhead that directly detracts from instructional time.
 
-\subsection{Area 1: Relevant Research Area}
-% Concept §7 — Describe what this area covers and where it falls short relative to this work.
-\missing{Review relevant literature in the first research area and identify its shortcomings}
+\subsection{Existing Course Administration Tools}
 
-% Citation patterns:
-% According to \citet{author2023}, this approach has been shown to be effective.
-% Several studies have examined this problem \cite{author2023,another2022}.
-% \citeauthor{author2023} demonstrated that...
+Learning management systems represent the dominant approach to course administration in higher education.
+Moodle~\cite{moodle} and Canvas provide content management, gradebook functionality, and plugin ecosystems, but model courses as flat hierarchies of resources and assignments with no concept of administrative lifecycle phases or team-specific workflows.
+Within computing education, Artemis~\cite{artemis} provides sophisticated exercise management with automated grading, detailed feedback, and exam workflows, but is designed for individual exercise-based learning and does not address the organizational administration of project teams or course lifecycle phases.
+GitHub Classroom~\cite{github-classroom} automates repository creation and assignment distribution for team-based projects but provides no administrative workflow model beyond repository setup.
+Ad-hoc combinations of general-purpose tools -- Google Forms for applications, spreadsheets for team allocation, email for feedback -- are widely used but require per-semester manual reconstruction and provide no unified view of the course lifecycle.
 
-\subsection{Area 2: Another Relevant Research Area}
-% Concept §7 — Same as above for the second theme.
-\missing{Review relevant literature in the second research area and identify its shortcomings}
+Table~\ref{tab:comparison} summarizes the capabilities of these tools against ten administrative requirements derived from project-based course management.
 
-\subsection{Research Gaps}
-% Concept §2 — Synthesize the gaps identified above into a concise gap statement.
-% This section bridges directly into the Research Gap subsection of the Introduction.
-\missing{Synthesize the specific gaps in current research that this work addresses}
+\subsection{Research Gap}
 
-The literature review identifies the following gaps:
-\begin{itemize}
-    \item \missing{First identified gap}
-    \item \missing{Second identified gap}
-    \item \missing{Third identified gap}
-\end{itemize}
-
-\subsection{Positioning of This Work}
-% Concept §7 — State explicitly: "Unlike prior work on X, this paper Y."
-% Reference the 3–5 closest papers identified in concept.md and differentiate clearly.
-\missing{Explain how this work differs from and builds upon the closest related work}
+The survey of existing tools reveals a consistent pattern:
+tools either address content delivery and individual assessment (LMS, exercise platforms) or handle one specific administrative task (repository creation, team decision support), but none model the course lifecycle as a composable structure.
+The result is a gap between the administrative reality of project-based courses -- which unfold as ordered sequences of distinct phases -- and the tooling available to instructors, who must bridge this gap with manual effort every semester.
+PROMPT addresses this gap by introducing the phase-based course meta-model as a first-class design abstraction, and providing an open-source platform that operationalizes this model in a production-ready system.

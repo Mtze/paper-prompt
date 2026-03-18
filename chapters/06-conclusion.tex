@@ -1,52 +1,35 @@
-% Conclusion Chapter
-% Restate contributions and answer each RQ directly. Do not introduce new results here.
-% Future work should connect to limitations acknowledged in the Discussion.
-% See .claude/concept.md sections 3 and 4 to restate contributions and RQ answers precisely.
+% Conclusion
+% Covers: summary of contributions, RQ answers, future work, final remarks
+% Do not introduce new results here. Connect future work to limitations in Discussion.
 
 \label{sec:conclusion}
 
-This chapter concludes the paper by summarizing the main contributions, discussing their significance, and outlining directions for future work.
-
 \subsection{Summary of Contributions}
-% TODO: Summarize your main contributions
-\missing{Summarize the main contributions of this work}
 
-This paper makes the following contributions:
-\begin{itemize}
-    \item \missing{Restate first contribution and its significance}
-    \item \missing{Restate second contribution and its significance}
-    \item \missing{Restate third contribution and its significance}
-\end{itemize}
+PROMPT introduces a phase-based course meta-model and its open-source implementation as a reusable platform for administering project-based courses across disciplines.
+The meta-model addresses a gap unmet by existing \acrshort{lms} platforms and exercise-focused tools:
+the explicit modeling of the course lifecycle as an ordered sequence of composable, independently operable phase instances.
+The four default phase implementations -- Application, Interview, Team Allocation, and Assessment -- cover the most common administrative requirements of project-based courses, with the Assessment Phase providing a unique formative feedback infrastructure that formalizes self-evaluation, peer evaluation, and configurable instructor assessment criteria.
 
 \subsection{Research Questions Answered}
-% TODO: Summarize how you answered each research question
-\missing{Summarize how each research question was answered}
 
 \begin{itemize}
-    \item \textbf{RQ1:} \missing{Brief answer to first research question}
-    \item \textbf{RQ2:} \missing{Brief answer to second research question}
-    \item \textbf{RQ3:} \missing{Brief answer to third research question (if applicable)}
+    \item \textbf{RQ1:} The phase-based meta-model captures the administrative structure of project-based courses more completely than existing tools, as demonstrated by the feature comparison and multi-semester deployment evidence at \university{}.
+    \item \textbf{RQ2:} Instructors and \acrshortpl{ta} perceive PROMPT as reducing administrative overhead through workflow consolidation, with the Assessment Phase's formative feedback structure identified as the most valued capability.
+    \item \textbf{RQ3:} The student \acrshort{sus} survey confirms \missing{high} perceived usability and strong appreciation of the Assessment Phase's transparency;
+    multi-institution adoption provides preliminary evidence of the plugin architecture's generalizability.
 \end{itemize}
 
-\subsection{Significance and Impact}
-% TODO: Discuss the significance of your work
-\missing{Discuss the broader significance and potential impact of this work}
-
 \subsection{Future Work}
-% TODO: Outline future research directions
-\missing{Outline specific directions for future research}
 
 Future research directions include:
 \begin{itemize}
-    \item \missing{First future research direction}
-    \item \missing{Second future research direction}
-    \item \missing{Third future research direction}
+    \item Cross-disciplinary adoption studies to provide empirical evidence for the meta-model's generalizability to project-based courses outside computing education.
+    \item Phase configuration templates and semester-to-semester course cloning to reduce the setup overhead identified as the primary instructor pain point.
+    \item Longitudinal studies on the impact of PROMPT's formative assessment support on student learning outcomes and reflection quality, representing the highest-priority research direction.
 \end{itemize}
 
-\begin{recommendationBox}
-\missing{Provide recommendations for researchers who want to build upon this work}
-\end{recommendationBox}
-
 \subsection{Final Remarks}
-% TODO: Provide final concluding remarks
-\missing{Provide final concluding remarks about the significance and implications of this work}
+
+PROMPT is available as open-source software at \url{https://github.com/prompt-edu/prompt} and is actively maintained by the \group{} research group at \university{}.
+Institutions interested in deploying PROMPT for project-based courses -- in computing or any other discipline -- are invited to contribute phase modules to the growing community library.

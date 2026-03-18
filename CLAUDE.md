@@ -8,13 +8,40 @@ Additionally, there is some context about the specific paper I'm writing in the 
 
 ## Paper Context
 
-- **Type**: [UPDATE: e.g., Conference Paper / Journal Article / Workshop Paper]
-- **Target Venue**: [UPDATE: Conference/Journal name]
-- **Format**: ACM LaTeX template (acmart class)
-- **Page Limit**: [UPDATE: e.g., 10 pages + 2 pages references]
-- **Review Type**: [UPDATE: e.g., Double-anonymous / Single-anonymous / Open]
-- **Submission URL**: [UPDATE: Conference submission system URL]
-- **Deadline**: [UPDATE: Submission deadline]
+- **Type**: System and Tool Paper
+- **Target Venue**: Koli Calling 2025 - International Conference on Computing Education Research
+- **Format**: ACM LaTeX template (acmart class), double-column
+- **Page Limit**: 10 pages + references (double-column, references excluded)
+- **Review Type**: Double-anonymous
+- **Submission URL**: [UPDATE when available]
+- **Deadline**: [UPDATE when available]
+
+## Paper Summary
+
+PROMPT is an open-source course administration platform built around a phase-based course meta-model.
+A course is modeled as an ordered sequence of independently operable phase instances.
+Four default phases are provided: Application, Interview, Team Allocation, and Assessment.
+The Assessment Phase is the pedagogically most significant: it formalizes formative feedback through
+self-evaluation, peer evaluation, and instructor-defined rubric criteria at each project milestone.
+The meta-model is domain-agnostic; the paper evaluates it in a computing education context (iPraktikum at TUM).
+The paper is framed as a tool paper with design science contributions (the phase-based meta-model).
+
+## Research Questions
+
+- **RQ1**: Does the phase-based meta-model adequately capture the administrative structure of project-based courses?
+- **RQ2**: How do instructors and TAs perceive the utility and usability of PROMPT for course administration?
+- **RQ3**: How effectively does the plugin architecture support institution-specific and discipline-specific extensions?
+
+## Section Structure
+
+| Section | File | Pages |
+|---|---|---|
+| Introduction | chapters/01-introduction.tex | 1.5 |
+| Background and Motivation | chapters/02-related-work.tex | 1.5 |
+| The PROMPT Platform | chapters/03-methodology.tex | 2.5 |
+| Evaluation | chapters/04-results.tex | 2.5 |
+| Discussion | chapters/05-discussion.tex | 1.5 |
+| Conclusion | chapters/06-conclusion.tex | 0.5 |
 
 ## Paper-Specific Guidelines
 
